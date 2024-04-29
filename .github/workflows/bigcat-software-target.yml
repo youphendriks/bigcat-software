@@ -15,7 +15,7 @@ jobs:
       run: echo -e "x" | tee -a docs/push.md
     - name: Commit files
       run: |
-        git config --local user.email "youp_hendriks@hotmail.com"
+        git config --local user.email "youphendriks"
         git config --local user.name "youphendriks"
         git add docs/push.md
         git commit -a -m "Add changes"
