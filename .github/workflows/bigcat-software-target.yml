@@ -10,13 +10,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Pushes test file
-      uses: youphendriks/bigcat-software@main
+    - name: Pushes to Repository
+      uses: tech-thinker/push-to-repo@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.DEPLOY_PRIVATE_KEY }}
       with:
-        source_file: 'docs/push.md'
-        destination_repo: 'youphendriks/bigcat-software-target'
-        user_email: 'youp_hendriks@gmail.com'
-        user_name: 'youphendriks'
-        commit_message: 'GitHub Action'
+        user-name: "github-actions[bot]"
+        user-email: github-actions[bot]@users.noreply.github.com
+        source-directory: "docs/push.md"
+        destination-github-username: "youphendriks"
+        destination-repository-name: "bigcat-software-target"
+        target-branch: main
