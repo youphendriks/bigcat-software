@@ -15,8 +15,8 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.DEPLOY_PRIVATE_KEY }}
       with:
-        user-name: "github-actions[bot]"
-        user-email: github-actions[bot]@users.noreply.github.com
+        user-name: "youphendriks"
+        user-email: youp_hendriks@hotmail.com
         source-directory: "docs/push.md"
         destination-github-username: "youphendriks"
         destination-repository-name: "bigcat-software-target"
