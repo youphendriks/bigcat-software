@@ -8,16 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Pushes to Repository
-      uses: tech-thinker/push-to-repo@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+      uses: actions/checkout@v4
       with:
-        user-name: "youphendriks"
-        user-email: youp_hendriks@hotmail.com
-        source-directory: "docs/push.md"
-        destination-github-username: "youphendriks"
-        destination-repository-name: "bigcat-software-target"
-        target-branch: main
+        persist-credentials: false 
+    - name: Commit files
+      run: |
+        git config --local user.email "youp_hendriks@hotmail.com"
+        git config --local user.name "youphendriks"
+        git add docs/push.md
+        git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        repository: bigcat-software-target
+        branch: ${{ github.ref }}
