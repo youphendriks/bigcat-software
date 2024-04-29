@@ -1,0 +1,35 @@
+name: Push test 
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/service/*.json'
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          submodules: true
+          fetch-depth: 0
+  
+      - name: Deploy to external repository
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader
+          git remote add upstream youphendriks/bigcat-software-target@main
+          git config --global user.name 'GitHub Action'
+          git config --global user.email '<>'
+          git add docs/*.md
+          if git diff --exit-code --staged; then
+              echo "No changes"
+          else
+              git commit -m 'Updated service Markdown '
+              git push
+          fi
