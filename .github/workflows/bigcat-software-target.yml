@@ -1,32 +1,22 @@
-name: Push test 
+name: Push File
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+on: 
+  workflow_dispatch
 
 jobs:
-  build:
+  copy-file:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Pushes test file
+      uses: youphendriks/bigcat-software@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.DEPLOY_PRIVATE_KEY }}
       with:
-        token: ${{ secrets.DEPLOY_PRIVATE_KEY }}
-        persist-credentials: true
-        repository: youphendriks/bigcat-software-target
-    - name: Add and commit
-      run: |
-        git config --unset-all http.https://github.com/.extraheader
-        git config --global user.name 'GitHub Action'
-        git add docs/*.md
-        git commit -a -m "Github action"
-        git remote add upstream youphendriks/bigcat-software-target@main
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{secrets.DEPLOY_PRIVATE_KEY }}
-        ssh: true
-        branch: main
-        repository: youphendriks/bigcat-software-target
-      
+        source_file: 'docs/push.md'
+        destination_repo: 'youphendriks/bigcat-software-target'
+        user_email: 'youp_hendriks@gmail.com'
+        user_name: 'youphendriks'
+        commit_message: 'GitHub Action'
