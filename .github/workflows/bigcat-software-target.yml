@@ -13,6 +13,8 @@ jobs:
       run: echo -e "x" | tee -a docs/push.md
     - name: Commit files
       run: |
+        git config --global user.email "youp_hendriks@hotmail.com"
+        git config --global user.name "Youp Hendriks"
         git add docs/push.md
         git commit -a -m "Add changes"
     - name: Push changes
