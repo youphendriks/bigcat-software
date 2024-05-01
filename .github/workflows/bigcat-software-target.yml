@@ -20,5 +20,5 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.PAT_KEY }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: youphendriks/bigcat-software-target
