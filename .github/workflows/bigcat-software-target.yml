@@ -3,8 +3,6 @@ name: Push File
 on: 
   workflow_dispatch:
   push:
-permissions:
-  contents: write
 jobs:
   copy-file:
     runs-on: ubuntu-latest
@@ -20,8 +18,7 @@ jobs:
         git add docs/push.md
         git commit -a -m "Add changes"
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: actions/checkout@v4
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         repository: youphendriks/bigcat-software-target
         branch: main
