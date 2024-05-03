@@ -1,8 +1,10 @@
 name: Push File
 
 on: 
-  workflow_dispatch
-
+  workflow_dispatch:
+  push:
+permissions:
+  contents: write
 jobs:
   copy-file:
     runs-on: ubuntu-latest
