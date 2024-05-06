@@ -7,30 +7,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-    - uses: actions/checkout@v4 
-    - name: append to push.md
-      run: |
-        echo -e "x" | tee -a docs/push.md
-    - name: Commit and push to overview repo
-    - run: |
-        git config --global user.email "youp_hendriks@hotmail.com"
-        git config --global user.name "Youp Hendriks"
-        git add docs/push.md
-        git commit -a -m "Add changes"
-        git push
-    - name: Switch and push to target repo
-    - uses: actions/checkout@v4
-    - with:
-        repository: youphendriks/bigcat-software-target
-        branch: main
-    - name: Switch and push to target repo
-    - run: |
-        git config --global user.email "youp_hendriks@hotmail.com"
-        git config --global user.name "Youp Hendriks"
-        git add docs/push.md
-        git commit -a -m "Add changes"
-        git push
+      - name: Checkout
+        uses: actions/checkout@v4 
+        
+      - name: append to push.md
+        run: echo -e "x" | tee -a docs/push.md
+          
+      - name: Commit and push to overview repo
+        run: |
+          git config --global user.email "youp_hendriks@hotmail.com"
+          git config --global user.name "Youp Hendriks"
+          git add docs/push.md
+          git commit -a -m "Add changes"
+          git push
+          
+      - name: Switch and push to target repo
+        uses: actions/checkout@v4
+        with:
+          repository: youphendriks/bigcat-software-target
+          branch: main
+          
+      - name: Switch and push to target repo
+        run: |
+          git config --global user.email "youp_hendriks@hotmail.com"
+          git config --global user.name "Youp Hendriks"
+          git add docs/push.md
+          git commit -a -m "Add changes"
+          git push
 
 
           
