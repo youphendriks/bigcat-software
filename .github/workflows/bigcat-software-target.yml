@@ -15,6 +15,7 @@ jobs:
           echo -e "x" | tee -a docs/push.md
           cp docs/push.md $(pwd)/../
           cd ..
+          pwd
           ls -al
       - name: Commit and push to overview repo
         run: |
