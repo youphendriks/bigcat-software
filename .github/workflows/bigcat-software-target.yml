@@ -13,7 +13,6 @@ jobs:
       run: |
         echo -e "x" | tee -a docs/push.md
     - name: Commit and push to overview repo
-    - uses: actions/checkout@v4
     - run: |
         git config --global user.email "youp_hendriks@hotmail.com"
         git config --global user.name "Youp Hendriks"
@@ -25,6 +24,7 @@ jobs:
     - with:
         repository: youphendriks/bigcat-software-target
         branch: main
+    - name: Switch and push to target repo
     - run: |
         git config --global user.email "youp_hendriks@hotmail.com"
         git config --global user.name "Youp Hendriks"
