@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
   push:
 jobs:
-  copy-file:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
     - uses: actions/checkout@v4 
     - name: append to push.md
-      run: 
+      run: |
         echo -e "x" | tee -a docs/push.md
     - name: Commit and push to overview repo
     - uses: actions/checkout@v4
