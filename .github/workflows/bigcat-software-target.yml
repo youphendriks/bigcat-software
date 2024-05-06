@@ -25,14 +25,16 @@ jobs:
           git commit -a -m "Add changes"
           git push
           
-      - name: Switch and push to target repo
+      - name: Switch to target repo
         uses: actions/checkout@v4
         with:
           repository: youphendriks/bigcat-software-target
           branch: main
           
-      - name: Switch and push to target repo
+      - name: Push to target repo
         run: |
+          pwd
+          ls -al
           git config --global user.email "youp_hendriks@hotmail.com"
           git config --global user.name "Youp Hendriks"
           git add $(pwd)/push.md
