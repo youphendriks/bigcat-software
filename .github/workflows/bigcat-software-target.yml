@@ -11,8 +11,9 @@ jobs:
         uses: actions/checkout@v4 
         
       - name: append to push.md
-        run: echo -e "x" | tee -a docs/push.md
-          
+        run: | 
+          echo -e "x" | tee -a docs/push.md
+          cp docs/push.md $(pwd)/../
       - name: Commit and push to overview repo
         run: |
           git config --global user.email "youp_hendriks@hotmail.com"
@@ -31,7 +32,7 @@ jobs:
         run: |
           git config --global user.email "youp_hendriks@hotmail.com"
           git config --global user.name "Youp Hendriks"
-          git add docs/push.md
+          git add $(pwd)/push.md
           git commit -a -m "Add changes"
           git push
 
