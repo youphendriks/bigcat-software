@@ -14,6 +14,8 @@ jobs:
         run: | 
           echo -e "x" | tee -a docs/push.md
           cp docs/push.md $(pwd)/../
+          cd ..
+          ls -al
       - name: Commit and push to overview repo
         run: |
           git config --global user.email "youp_hendriks@hotmail.com"
