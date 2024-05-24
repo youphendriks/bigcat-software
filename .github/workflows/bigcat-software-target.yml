@@ -1,33 +1,45 @@
-name: Push test 
+name: Push File
 
-on:
+on: 
   workflow_dispatch:
   push:
-    paths:
-      - 'docs/service/*.json'
-    branches:
-      - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.DEPLOY_PRIVATE_KEY }}
-        persist-credentials: true
-    - name: Add and commit
-      run: |
-        git config --unset-all http.https://github.com/.extraheader
-        git config --global user.name 'GitHub Action'
-        git add docs/*.md
-        git commit -a -m "Github action"
-        git remote add upstream youphendriks/bigcat-software-target@main
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{secrets.DEPLOY_PRIVATE_KEY }}
-        ssh: true
-        branch: main
-        repository: youphendriks/bigcat-software-target
-      
+      - name: Checkout
+        uses: actions/checkout@v4 
+        
+      - name: append to push.md
+        run: | 
+          echo -e "x" | tee -a docs/push.md
+          cp docs/push.md $(pwd)/../
+          cd ..
+          pwd
+          ls -al
+      - name: Commit and push to overview repo
+        run: |
+          git config --global user.email "youp_hendriks@hotmail.com"
+          git config --global user.name "Youp Hendriks"
+          git add docs/push.md
+          git commit -a -m "Add changes"
+          git push
+          
+      - name: Switch to target repo
+        uses: actions/checkout@v4
+        with:
+          repository: youphendriks/bigcat-software-target
+          branch: main
+          
+      - name: Push to target repo
+        run: |
+          pwd
+          ls -al
+          git config --global user.email "youp_hendriks@hotmail.com"
+          git config --global user.name "Youp Hendriks"
+          git add $(pwd)/push.md
+          git commit -a -m "Add changes"
+          git push
+
+
+          
