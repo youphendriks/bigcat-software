@@ -1,6 +1,6 @@
 name: Push File
 
-on: 
+on:
   workflow_dispatch:
   push:
 jobs:
@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 
-        
+        uses: actions/checkout@v4
+
       - name: append to push.md
-        run: | 
+        run: |
           echo -e "x" | tee -a docs/push.md
           cp docs/push.md $(pwd)/../
           cd ..
@@ -24,13 +24,13 @@ jobs:
           git add docs/push.md
           git commit -a -m "Add changes"
           git push
-          
+
       - name: Switch to target repo
         uses: actions/checkout@v4
         with:
           repository: youphendriks/bigcat-software-target
           branch: main
-          
+
       - name: Push to target repo
         run: |
           pwd
@@ -40,6 +40,3 @@ jobs:
           git add $(pwd)/push.md
           git commit -a -m "Add changes"
           git push
-
-
-          
