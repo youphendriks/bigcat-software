@@ -15,7 +15,6 @@
         "web_platform":"no",
         "input_format":"text",
         "output_format":"text",
-        "web_platform":"no",
         "source_code":"https://github.com/cyNeo4j/cyNeo4j",
         "documentation":"https://cyneo4j.github.io/DSMN/",
         "zenodo_link":"",
