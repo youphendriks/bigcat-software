@@ -1,16 +1,34 @@
 #!/usr/bin/env python3
+import os
 import json
-import pandas as pd
 from py_markdown_table.markdown_table import markdown_table
 
-def createTable(path):
-    df = pd.read_json(path)
-    df = df.transpose()
-    df.columns = df.iloc[0]
-    df = df[1:]
-    markdown = df.to_markdown()
-    print(markdown)
+def importProjectList(path):
+    with open(path) as f:
+        projectlist = json.load(f)
+    for project in projectlist:
+        name = project["name"]
+        rawlink = project["rawlink"]
+        os.system("mkdir -p ../db/" + name)
+        os.system("wget -O ../db/" + name + "/README.md " + rawlink)
+    return projectlist
 
-createTable("db/research_archive.json")
-createTable("db/data_analysis.json")
-createTable("db/software.json")
+def extractData(projectlist):
+    for project in projectlist:
+        name = project["name"]
+        projectlib = open(("../db/" + name + "/README.md"), 'r').read()
+        split1 = projectlib.split('<!--Statement-->')
+        print(split1)
+
+#def createJson(dblist):
+
+#def saveJson(dbjson):
+
+#def createMarkdownTable(dbjson):
+
+#def saveMarkdownTable(dbmarkdown):
+
+
+
+projectlist = importProjectList("../db/project_list.json")
+extractData(projectlist)
