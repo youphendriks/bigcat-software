@@ -29,6 +29,7 @@ def importProjectList(path):
     for project in projectlist:
         name = project["name"]
         rawlink = project["rawlink"]
+        os.system("rm -vr db/" + name)
         os.system("mkdir -p db/" + name)
         os.system("wget -O db/" + name + "/README.md " + rawlink)
     return projectlist
