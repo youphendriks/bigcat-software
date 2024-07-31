@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     #myDIV {
-    width: 100%;
-    padding: 50px 0;
-    text-align: center;
-    background-color: lightblue;
-    margin-top: 20px;
+        width: 100%;
+        padding: 50px 0;
+        text-align: center;
+        background-color: lightgrey;
+        margin-top: 20px;
+    }
+    #bodyStyle {
+        margin: 20px;
+        background-color:black;
     }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,20 +24,15 @@
   <body>
     <div id="container">
       <html>
-       <body style="background-color:black">
+       <body id="bodyStyle">
         <div id="myDIV">Some info</div>
         <button onclick= "toggleText()">Click here</button>
         <script src="./js/toggletext.js"></script>
         <div>Some more info</div>
         <p>Some more info</p>
-
         <div class="footer">Footer info</div>
-
-        </body>
-
-    </html>
-
-
+       </body>
+      </html>
     </div>
   </body>
 </html
