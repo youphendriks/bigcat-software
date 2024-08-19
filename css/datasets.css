@@ -1,19 +1,17 @@
 .navbar {
-  background-color: #f5f5f5;
+  background-color: yellowgreen;
   border-radius: 10px;
   margin: 20px 20px 5px;
-  padding: 18px;
   align-content: left;
 }
 
 .nav-link:hover {
-  background-color: #e8e8e8;
+  background-color: springgreen;
   border-radius: 10px;
 }
 
-.navbar-nav a.active {
-  background-color: #ededed;
-  border-radius: 10px;
+header {
+  background-color: blueviolet;
 }
 
 h2 {
@@ -27,7 +25,6 @@ h2 {
   color: #545454;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
   margin: 5px 20px 5px;
   overflow: hidden;
   border: none;
@@ -44,9 +41,8 @@ h2 {
   border-radius: 10px;
   padding: 18px;
   display: none;
-  background-color: #ededed;
+  background-color: #e8e8e8;
   overflow: hidden;
-  width: 100%;
   margin: 0px 20px 10px;
 }
 
@@ -55,7 +51,12 @@ h2 {
   padding: 18px;
   margin: 20px;
   overflow: hidden;
-  background-color: #f5f5f5;
+  background-color: #464;
   border-radius: 10px;
 }
 
+#bodyContainer {
+  background-color: darkorchid;
+  padding: 0px;
+  width: 100%;
+}
