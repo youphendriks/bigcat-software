@@ -1,8 +1,24 @@
 #!/usr/bin/env python3
 import os
 import json
-from py_markdown_table.markdown_table import markdown_table
+import markdown
+from bs4 import BeautifulSoup
 
+# 0. Call functions
+def main():
+    # 1. Import projectlist
+    projectlist = importProjectlist("db/project_list.json")
+    # 2. Import taglist
+    taglist = importTaglist("db/tag_list.json")
+    # 3. Extract data
+    for project in projectlist:
+        extractData(project, taglist)
+        # 4. Format Json
+        # 5. Create Json
+    # 6. Create HTML
+    createHTML(projectlist)
+
+# 1. Import projectlist
 def importProjectlist(path):
     with open(path) as f:
         projectlist = json.load(f)
@@ -14,6 +30,7 @@ def importProjectlist(path):
         os.system("wget -O db/" + name + "/README.md " + rawlink)
     return projectlist
 
+# 2. Import taglist
 def importTaglist(path):
     with open(path) as f:
         taglist = json.load(f)
@@ -21,40 +38,55 @@ def importTaglist(path):
     print(taglist)
     return taglist
 
-def extractData(projectlist):
-    for project in projectlist:
-        ##name = project["name"]
-        projectlib = open(("db/" + name + "/README.md"), 'r').read()
-        tagdict = extractTags(projectlib, taglist)
-        createJson(tagdict, name)
-
-def extractTags(projectlib, taglist):
+# 3.Extract data
+def extractData(project, taglist):
+    name = project["name"]
+    projectlib = open(("db/" + name + "/README.md"), 'r').read()
     tagdict = {}
     for tag in taglist:
         try:
             split1 = projectlib.split("<!--"+tag+"-->")
             split2 = split1[1].split("<!--/"+tag+"-->")
-            ## tagdict[tag]=split2[0]
-            tagdict[tag]=":heavy_check_mark:"
+            tagdict[tag]=split2[0]
         except:
-            tagdict[tag]=":x:"
-    print(tagdict)
-    return tagdict
+            tagdict[tag]="404 data not found"
+    # print(tagdict)
+    formatJson(tagdict, name)
 
-def createJson(tagdict, name):
-    os.system("rm -vr db/collect.json")
-    collectjson = []
+# 4. Format Json
+def formatJson(tagdict, name):
+    formatTagdict = {}
+    for tag in tagdict:
+        html = markdown.markdown(tagdict[tag])
+        html = html.replace("\n"," ")
+        html = html.replace("\t"," ")
+        formatTagdict[tag] = html
+    print("formatTagdict:")
+    print(formatTagdict)
+    createJson(formatTagdict, name)
+
+# 5. Create Json
+def createJson(formatTagdict, name):
+    with open(('db/' + name + '/' + name+'.json'), 'w') as f:
+        json.dump(formatTagdict, f)
+
+# 6. Create HTML
+def createHTML(projectlist):
+    template = open(("template.html"), 'r').read()
+    accordion = ""
     for project in projectlist:
         name = project["name"]
-        projectlib = open(("db/" + name + "/README.md"), 'r').read()
-        tagdict = extractTags(projectlib, taglist)
-        with open(('db/' + name + '/' + name+'.json'), 'w') as f:
-            json.dump(tagdict, f)
-        collect.append(tagdict)
-    return collect
+        projectHTML= open(("db/" + name + "/" + name + ".json"), 'r').read()
+        projectHTML = json.loads(projectHTML)
+        accordion+= '<div class="col"><button class="accordion"><h2>' + projectHTML["Title"] + '</h2><p id="statement">' + projectHTML["Statement"] + '</p></button><div class="panel"><p id="description"><h4><b>Description:</b></h4>' + projectHTML["Description"] + '</div></div>'
+    split = template.split('id="bodyContainer">')
+    html = split[0] + accordion + split[1]
+    with open(('index.html'), 'w') as f:
+        f.write(html)
+    print("fin.")
 
-#def saveMarkdownTable(dbmarkdown):
 
-projectlist = importProjectlist("db/project_list.json")
-taglist = importTaglist("db/tag_list.json")
-extractData(projectlist)
+
+
+
+main()
