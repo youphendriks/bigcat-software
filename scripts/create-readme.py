@@ -80,7 +80,7 @@ def createHTML(projectlist):
         projectHTML = json.loads(projectHTML)
         accordion+= '<div class="col"><button class="accordion"><h2>' + projectHTML["Title"] + '</h2><p id="statement">' + projectHTML["Statement"] + '</p></button><div class="panel"><p id="description"><h4><b>Description:</b></h4>' + projectHTML["Description"] + '</div></div>'
     split = template.split('id="bodyContainer">')
-    html = split[0] + accordion + split[1]
+    html = split[0] + 'id="bodyContainer">'+ accordion + split[1]
     with open(('index.html'), 'w') as f:
         f.write(html)
     print("fin.")
