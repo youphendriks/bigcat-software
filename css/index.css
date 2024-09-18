@@ -1,9 +1,13 @@
+header {
+  background-color: #ffffff;
+}
+
 .navbar {
-  background-color: #f5f5f5;
+  background-color: #f7f7f7;
   border-radius: 10px;
   margin: 20px 20px 5px;
-  padding: 18px;
   align-content: left;
+  color: #545454;
 }
 
 .nav-link:hover {
@@ -11,14 +15,17 @@
   border-radius: 10px;
 }
 
-.navbar-nav a.active {
-  background-color: #ededed;
-  border-radius: 10px;
+#bodyContainer {
+  background-color: #ffffff;
+  padding: 0px;
+  width: 100%;
+  color: #545454;
 }
 
 h2 {
   font-size: 26px;
   margin-top: 10px;
+  color: #545454;
 }
 
 .accordion{
@@ -27,13 +34,11 @@ h2 {
   color: #545454;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
   margin: 5px 20px 5px;
   overflow: hidden;
   border: none;
   text-align: left;
   font-size: 15px;
-  transition: 0.4s;
 }
 
 .active, .accordion:hover {
@@ -44,10 +49,9 @@ h2 {
   border-radius: 10px;
   padding: 18px;
   display: none;
-  background-color: #ededed;
+  background-color: #e8e8e8;
   overflow: hidden;
-  width: 100%;
-  margin: 0px 20px 10px;
+  margin: 0px 20px 5px;
 }
 
 .footer {
@@ -55,7 +59,7 @@ h2 {
   padding: 18px;
   margin: 20px;
   overflow: hidden;
-  background-color: #f5f5f5;
+  background-color: #f7f7f7;
   border-radius: 10px;
 }
 

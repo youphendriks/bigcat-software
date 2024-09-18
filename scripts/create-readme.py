@@ -7,9 +7,9 @@ from bs4 import BeautifulSoup
 # 0. Call functions
 def main():
     # 1. Import projectlist
-    projectlist = importProjectlist("db/project_list.json")
+    projectlist = importProjectlist("scripts/project_list.json")
     # 2. Import taglist
-    taglist = importTaglist("db/tag_list.json")
+    taglist = importTaglist("scripts/tag_list.json")
     # 3. Extract data
     for project in projectlist:
         extractData(project, taglist)
@@ -72,7 +72,7 @@ def createJson(formatTagdict, name):
 
 # 6. Create HTML
 def createHTML(projectlist):
-    template = open(("template.html"), 'r').read()
+    template = open(("scripts/template.html"), 'r').read()
     accordion = ""
     for project in projectlist:
         name = project["name"]
@@ -84,9 +84,5 @@ def createHTML(projectlist):
     with open(('pages/software.html'), 'w') as f:
         f.write(html)
     print("fin.")
-
-
-
-
 
 main()
