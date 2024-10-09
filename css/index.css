@@ -3,63 +3,73 @@ header {
 }
 
 .navbar {
-  background-color: #f7f7f7;
-  border-radius: 10px;
-  margin: 20px 20px 5px;
-  align-content: left;
+  background-color: #f5f5f5;
   color: #545454;
+  border-radius: 20px;
+  margin: 20px;
+  align-content: left;
+  box-shadow: 5px 5px 5px #e0e0e0;
 }
 
 .nav-link:hover {
   background-color: #e8e8e8;
-  border-radius: 10px;
-}
-
-#bodyContainer {
-  background-color: #ffffff;
-  padding: 0px;
-  width: 100%;
   color: #545454;
+  border-radius: 20px;
 }
 
 h2 {
+  color: #545454;
   font-size: 26px;
   margin-top: 10px;
-  color: #545454;
 }
 
-.accordion{
-  border-radius: 10px;
+#bodySoftware {
+  padding: 0px 0px 0px 0px;
+}
+
+#bodyContainer {
   background-color: #f5f5f5;
   color: #545454;
-  cursor: pointer;
-  padding: 18px;
-  margin: 5px 20px 5px;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 5px 5px 5px #e0e0e0;
+}
+
+.accordion {
+  background-color: #f5f5f5;
+  color: #545454;
+  border-radius: 20px;
   overflow: hidden;
-  border: none;
+  margin: 0px 0px 10px 0px;
   text-align: left;
-  font-size: 15px;
+  padding: 40px;
+  box-shadow: 5px 5px 5px #e0e0e0;
+  cursor: pointer;
+  border: none;
 }
 
 .active, .accordion:hover {
   background-color: #e8e8e8;
+  border-radius: 20px;
 }
 
 .panel {
-  border-radius: 10px;
-  padding: 18px;
   display: none;
   background-color: #e8e8e8;
+  color: #545454;
+  border-radius: 20px;
   overflow: hidden;
-  margin: 0px 20px 5px;
+  margin: 0px 0px 10px 0px;
+  text-align: left;
+  padding: 40px;
+  box-shadow: 5px 5px 5px #e0e0e0;
 }
 
 .footer {
-  bottom: 0px;
-  padding: 18px;
+  border-radius: 20px;
+  background-color: #f5f5f5;
+  color: #545454;
   margin: 20px;
-  overflow: hidden;
-  background-color: #f7f7f7;
-  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 5px 5px 5px #e0e0e0;
 }
-
